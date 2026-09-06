@@ -128,6 +128,36 @@
       color: white;
     }
 
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
   </style>
 
 </head>
@@ -191,13 +221,17 @@
           00 zł
         </div>
 
-        <button class="button" onclick="alert('Товар відкрито')">
+        <button
+          class="button"
+          onclick="openProduct('Демонстраційний товар', '00', 'Опис товару')"
+        >
           Переглянути
         </button>
 
       </div>
 
     </div>
+
 
     <div class="product" data-category="category2">
 
@@ -215,11 +249,41 @@
           00 zł
         </div>
 
-        <button class="button" onclick="alert('Товар відкрито')">
+        <button
+          class="button"
+          onclick="openProduct('Демонстраційний товар 2', '00', 'Опис товару 2')"
+        >
           Переглянути
         </button>
 
       </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close" onclick="closeProduct()">×</span>
+
+      <h2 id="modalName">
+        Товар
+      </h2>
+
+      <p id="modalPrice">
+        00 zł
+      </p>
+
+      <p id="modalDescription">
+        Опис товару
+      </p>
+
+      <button class="button" onclick="addToCart()">
+        Додати в кошик
+      </button>
 
     </div>
 
@@ -311,6 +375,35 @@
     }
 
 
+    function openProduct(name, price, description) {
+
+      document.getElementById("modalName").textContent = name;
+
+      document.getElementById("modalPrice").textContent =
+        price + " zł";
+
+      document.getElementById("modalDescription").textContent =
+        description;
+
+      document.getElementById("productModal").style.display = "flex";
+
+    }
+
+
+    function closeProduct() {
+
+      document.getElementById("productModal").style.display = "none";
+
+    }
+
+
+    function addToCart() {
+
+      alert("Товар додано в кошик");
+
+    }
+
+
     loadProducts();
 
   </script>
@@ -319,4 +412,3 @@
 
 </html>
 ```
-
