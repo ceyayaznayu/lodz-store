@@ -270,6 +270,20 @@ const supabaseClient = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );  
+async function loadProducts() { 
+  const { data, error } = await supabase 
+  .from('products') 
+  .select('*');
+
+  if (error) {
+    console.error('Помилка завантаження товарів:', error);
+    return;
+}
+
+console.log('Товари:', data);
+return data;
+}
+loadProducts();  
 </body>
 
 </html>
